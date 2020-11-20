@@ -145,6 +145,8 @@
                 android:id="@+id/small_size"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
+                android:clickable="true"
+                android:focusable="true"
                 android:layout_weight="1"
                 android:alpha=".4"
                 android:src="@drawable/background4"/>
@@ -152,12 +154,16 @@
                 android:id="@+id/medium_size"
                 android:layout_width="0dp"
                 android:layout_height="70dp"
+                android:clickable="true"
+                android:focusable="true"
                 android:layout_weight="1"
                 android:src="@drawable/background4"/>
             <ImageView
                 android:id="@+id/large_size"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
+                android:clickable="true"
+                android:focusable="true"
                 android:layout_weight="1"
                 android:alpha=".4"
                 android:src="@drawable/background4"/>
@@ -185,6 +191,8 @@
                     android:id="@+id/one_sausage"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:layout_weight="1"
                     android:alpha=".4"
                     android:src="@drawable/sausage"/>
@@ -192,12 +200,16 @@
                     android:id="@+id/two_sausages"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:layout_weight="1"
                     android:src="@drawable/sausages"/>
                 <ImageView
                     android:id="@+id/three_sausages"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:layout_weight="1"
                     android:alpha=".4"
                     android:src="@drawable/sausages2"/>

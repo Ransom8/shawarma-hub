@@ -19,4 +19,9 @@
     <string name="minus">-</string>
     <string name="_200">200</string>
     <string name="naira"><sup>₦</sup></string>
+    <string name="your">Your</string>
+    <string name="cart">Cart</string>
+    <string name="total">TOTAL</string>
+    <string name="checkout">Checkout</string>
+    <string name="_215">×</string>
 </resources>
