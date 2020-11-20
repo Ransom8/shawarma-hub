@@ -11,6 +11,7 @@
 
     </item>
     <item >
-        <bitmap android:src="@drawable/background" android:alpha=".5"/>
+        <bitmap android:src="@drawable/background" android:alpha=".2"
+           android:scaleType = "centerCrop" />
     </item>
 </layer-list>
