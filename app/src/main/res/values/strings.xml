@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Shawarma Hub</string>
+    <string name="Chicken_Shawarma">Chicken Shawarma</string>
+    <string name="Beef_Shawarma">Beef Shawarma</string>
+    <string name="Chicken_Beef_Combo">Chicken-Beef Combo</string>
+    <string name="Fish_Shawarma">Fish Shawarma</string>
+    <string name="Vegan_Shawarma">Vegan Shawarma</string>
+    <string name="Each_bite">Each Bite</string>
+    <string name="Comes_with">Comes With</string>
+    <string name="So_Much_Pleasure">So Much Pleasure!</string>
+    <string name="Size">Size</string>
+    <string name="Sausage">Sausages</string>
+    <string name="Add_to_Cart">Add to cart</string>
+    <string name="shawarma_hub">SHAWARMA HUB</string>
 </resources>
