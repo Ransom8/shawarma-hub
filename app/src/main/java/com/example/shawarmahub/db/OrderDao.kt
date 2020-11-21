@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.shawarmahub.db.model.Order
 
 
 @Dao
@@ -17,8 +18,11 @@ interface OrderDao {
     suspend fun deleteOrder(order: Order)
 
     @Query("SELECT * FROM `order`")
-    fun getOrder():LiveData<Order>
+    fun getOrder():LiveData<List<Order>>
 
     @Query("SELECT * FROM `order`")
     fun deleteAllOrder(): LiveData<Order>
+
+    @Query("SELECT SUM(price) FROM `order`")
+    fun totalOrder(): LiveData<Int>
 }
