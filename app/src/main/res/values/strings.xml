@@ -25,4 +25,10 @@
     <string name="checkout">Checkout</string>
     <string name="_215">×</string>
     <string name="cont">Continue</string>
+    <string name="medium">medium</string>
+    <string name="small">small</string>
+    <string name="large">large</string>
+    <string name="one_">one</string>
+    <string name="three">three</string>
+    <string name="two">two</string>
 </resources>
