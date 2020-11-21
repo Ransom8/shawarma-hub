@@ -6,4 +6,5 @@
     <color name="Big_text_color">#CF9775</color>
     <color name="Background_color">#FAF4EE</color>
     <color name="Counter_text_color">#8C746A</color>
+    <color name="shiny_background">#F5F5F5</color>
 </resources>

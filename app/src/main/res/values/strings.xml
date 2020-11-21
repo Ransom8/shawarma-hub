@@ -12,4 +12,23 @@
     <string name="Sausage">Sausages</string>
     <string name="Add_to_Cart">Add to cart</string>
     <string name="shawarma_hub">SHAWARMA HUB</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="plus">+</string>
+    <string name="one">1</string>
+    <string name="minus">-</string>
+    <string name="_200">200</string>
+    <string name="naira"><sup>₦</sup></string>
+    <string name="your">Your</string>
+    <string name="cart">Cart</string>
+    <string name="total">TOTAL</string>
+    <string name="checkout">Checkout</string>
+    <string name="_215">×</string>
+    <string name="cont">Continue</string>
+    <string name="medium">medium</string>
+    <string name="small">small</string>
+    <string name="large">large</string>
+    <string name="one_">one</string>
+    <string name="three">three</string>
+    <string name="two">two</string>
 </resources>
