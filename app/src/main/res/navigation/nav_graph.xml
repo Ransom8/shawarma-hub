@@ -7,12 +7,34 @@
 
     <fragment
         android:id="@+id/sharwamaDetailsFragment"
-        android:name="com.example.shawarmahub.SharwamaDetailsFragment"
+        android:name="com.example.shawarmahub.ui.fragments.SharwamaDetailsFragment"
         android:label="fragment_sharwama_details"
-        tools:layout="@layout/fragment_sharwama_details" />
+        tools:layout="@layout/fragment_sharwama_details" >
+        <action
+            android:id="@+id/action_sharwamaDetailsFragment_to_shawarmaMenuFragment"
+            app:destination="@id/shawarmaMenuFragment" />
+        <argument
+            android:name="sharwama"
+            app:argType="com.example.shawarmahub.db.model.Sharwama" />
+        <action
+            android:id="@+id/action_sharwamaDetailsFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+    </fragment>
     <fragment
         android:id="@+id/cartFragment"
-        android:name="com.example.shawarmahub.CartFragment"
+        android:name="com.example.shawarmahub.ui.fragments.CartFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_shawarmaMenuFragment"
+            app:destination="@id/shawarmaMenuFragment" />
+        <argument
+            android:name="order"
+            app:argType="com.example.shawarmahub.db.model.Order" />
+    </fragment>
+    <fragment
+        android:id="@+id/shawarmaMenuFragment"
+        android:name="com.example.shawarmahub.ui.fragments.ShawarmaMenuFragment"
+        android:label="fragment_shawarma_menu"
+        tools:layout="@layout/fragment_shawarma_menu" />
 </navigation>

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".SharwamaDetailsFragment">
+    tools:context=".ui.fragments.SharwamaDetailsFragment">
 
     <LinearLayout
         android:id="@+id/header"
@@ -256,12 +256,15 @@
         android:id="@+id/addToCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/Add_to_Cart"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="@color/Big_text_color"
+        android:text="@string/Add_to_Cart"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.462"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/items" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

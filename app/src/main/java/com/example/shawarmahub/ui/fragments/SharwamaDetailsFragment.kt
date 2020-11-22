@@ -1,4 +1,4 @@
-package com.example.shawarmahub
+package com.example.shawarmahub.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -8,7 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.shawarmahub.R
 import com.example.shawarmahub.databinding.FragmentSharwamaDetailsBinding
+import com.example.shawarmahub.db.OrderDatabase
+import com.example.shawarmahub.db.model.Order
+import com.example.shawarmahub.repository.Repository
+import com.example.shawarmahub.ui.viewModel.MainViewModel
+import com.example.shawarmahub.ui.viewModel.ViewModelFactory
 
 
 class SharwamaDetailsFragment : Fragment() {
@@ -16,6 +25,7 @@ class SharwamaDetailsFragment : Fragment() {
     private var _binding : FragmentSharwamaDetailsBinding? = null
     private val binding get() = _binding!!
 
+    lateinit var viewModel : MainViewModel
     lateinit var decreaseBtn :TextView
     lateinit var increaseBtn : TextView
     lateinit var quantity :TextView
@@ -37,6 +47,17 @@ class SharwamaDetailsFragment : Fragment() {
     ): View? {
 
         _binding = FragmentSharwamaDetailsBinding.inflate(inflater, container, false)
+
+        /** dao instance**/
+        val dao = OrderDatabase.invoke(requireContext()).getOrderDao()
+
+        /** repository instance**/
+        val repository = Repository(dao)
+
+        /** viewModel instance**/
+        val factory = ViewModelFactory(repository)
+
+        viewModel = ViewModelProvider(this, factory).get(MainViewModel::class.java)
 
         decreaseBtn = binding.decrease
         increaseBtn = binding.increase
@@ -74,38 +95,44 @@ class SharwamaDetailsFragment : Fragment() {
 
         /**select small**/
         smallSize.setOnClickListener {
-            selectOptions(smallSize, mediumSize, largeSize,R.string.small, -200, sizeTag)
+            selectOptions(smallSize, mediumSize, largeSize, R.string.small, -200, sizeTag)
             smallSize.setOnClickListener(null)
         }
 
         /***select medium**/
         mediumSize.setOnClickListener {
-            selectOptions(mediumSize, smallSize, largeSize,R.string.medium, 0, sizeTag)
+            selectOptions(mediumSize, smallSize, largeSize, R.string.medium, 0, sizeTag)
             mediumSize.setOnClickListener(null)
         }
 
         /***select large**/
         largeSize.setOnClickListener {
-            selectOptions(largeSize, smallSize, mediumSize,R.string.large, 200, sizeTag)
+            selectOptions(largeSize, smallSize, mediumSize, R.string.large, 200, sizeTag)
             largeSize.setOnClickListener(null)
         }
 
         /***select one sausage**/
         oneSausage.setOnClickListener {
-            selectOptions(oneSausage, twoSausages, threeSausages,R.string.one_, 0, sausageTag)
+            selectOptions(oneSausage, twoSausages, threeSausages, R.string.one_, 0, sausageTag)
             oneSausage.setOnClickListener(null)
         }
 
         /***select two sausage**/
         twoSausages.setOnClickListener {
-            selectOptions(twoSausages, oneSausage, threeSausages,R.string.two, 200, sausageTag)
+            selectOptions(twoSausages, oneSausage, threeSausages, R.string.two, 200, sausageTag)
             twoSausages.setOnClickListener(null)
         }
 
         /***select three sausage**/
         threeSausages.setOnClickListener {
-            selectOptions(threeSausages, twoSausages, oneSausage,R.string.three, 300, sausageTag)
+            selectOptions(threeSausages, twoSausages, oneSausage, R.string.three, 300, sausageTag)
             threeSausages.setOnClickListener(null)
+        }
+
+
+        /**add to cart***/
+        binding.addToCart.setOnClickListener {
+            addOrderToCart()
         }
     }
 
@@ -113,7 +140,7 @@ class SharwamaDetailsFragment : Fragment() {
     private fun decreaseQuantity(){
         var newPrice = initialPrice
         var qty = quantity.text.toString().toInt()
-        Log.i("TAG", "decreaseQuantity: $initialPrice")
+
         if(qty == 1) price.text = initialPrice.toString()
 
         if(qty > 1) {
@@ -149,7 +176,13 @@ class SharwamaDetailsFragment : Fragment() {
         val newPrice = oldPrice + amt
         price.text = newPrice.toString()
 
+    }
 
+    private fun addOrderToCart(){
+        val order = Order("name", 1, "3", 300)
+        viewModel.addOrder(order)
+        Toast.makeText(requireContext(), "Order Added To Cart", Toast.LENGTH_SHORT).show()
+        findNavController().navigate(R.id.cartFragment)
     }
 
     override fun onDestroy() {
