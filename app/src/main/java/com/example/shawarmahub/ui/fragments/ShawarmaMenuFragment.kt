@@ -5,36 +5,40 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shawarmahub.R
+import com.example.shawarmahub.R.id.recyclerView
+import com.example.shawarmahub.adapters.Shawarma
+import com.example.shawarmahub.adapters.ShawarmaMenuAdapter
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ShawarmaMenuFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ShawarmaMenuFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    lateinit var adapter: ShawarmaMenuAdapter
+    private val recyclerList = mutableListOf(
+        Shawarma(R.drawable.shawarma1, R.string.Chicken_Shawarma, "N1200"),
+        Shawarma(R.drawable.shawarma2, R.string.Beef_Shawarma, "N1200"),
+        Shawarma(R.drawable.shawarma3, R.string.Fish_Shawarma, "N1200"),
+        Shawarma(R.drawable.shawarma4, R.string.Vegan_Shawarma, "N1800"),
+        Shawarma(R.drawable.shawarma1, R.string.Chicken_Beef_Combo, "N1800"),
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_shawarma_menu, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        adapter = ShawarmaMenuAdapter(recyclerList)
+
+//        recyclerView.adapter = ShawarmaMenuAdapter(recyclerList)
+//        recyclerView.layoutManager = LinearLayoutManager(this)
+//        recyclerView.setHasFixedSize(true)
     }
 }

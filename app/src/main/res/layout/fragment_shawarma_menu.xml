@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Background_color"
-    tools:context=".ShawarmaMenuFragment">
+    tools:context=".ui.fragments.ShawarmaMenuFragment">
 
     <SearchView
         android:id="@+id/searchView"
@@ -32,32 +32,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/textView3"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:fontFamily="@font/cabin"-->
-    <!--        android:text="@string/Comes_with"-->
-    <!--        android:textColor="@color/Big_text_color"-->
-    <!--        android:textSize="36sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        tools:layout_editor_absoluteX="164dp"-->
-    <!--        tools:layout_editor_absoluteY="35dp" />-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/textView4"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:fontFamily="@font/cabin"-->
-    <!--        android:text="@string/So_Much_Pleasure"-->
-    <!--        android:textColor="@color/Big_text_color"-->
-    <!--        android:textSize="36sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.12"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        tools:layout_editor_absoluteY="79dp" />-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
