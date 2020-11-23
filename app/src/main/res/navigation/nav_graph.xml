@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/sharwamaDetailsFragment">
+    app:startDestination="@id/shawarmaMenuFragment">
 
     <fragment
         android:id="@+id/sharwamaDetailsFragment"
@@ -36,10 +36,20 @@
         android:id="@+id/shawarmaMenuFragment"
         android:name="com.example.shawarmahub.ui.fragments.ShawarmaMenuFragment"
         android:label="fragment_shawarma_menu"
+
         tools:layout="@layout/fragment_shawarma_menu" />
-    <fragment
-        android:id="@+id/checkoutFragment"
-        android:name="com.example.shawarmahub.CheckoutFragment"
-        android:label="fragment_checkout"
-        tools:layout="@layout/fragment_checkout" />
+<!--    <fragment-->
+<!--        android:id="@+id/checkoutFragment"-->
+<!--        android:name="com.example.shawarmahub.CheckoutFragment"-->
+<!--        android:label="fragment_checkout"-->
+<!--        tools:layout="@layout/fragment_checkout" />-->
+
+<!--        <action-->
+<!--            android:id="@+id/action_shawarmaMenuFragment_to_sharwamaDetailsFragment"-->
+<!--            app:destination="@id/sharwamaDetailsFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_shawarmaMenuFragment_to_cartFragment"-->
+<!--            app:destination="@id/cartFragment" />-->
+<!--    </fragment>-->
+
 </navigation>
