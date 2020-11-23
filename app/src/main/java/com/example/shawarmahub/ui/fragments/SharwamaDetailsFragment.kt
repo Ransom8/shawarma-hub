@@ -179,7 +179,7 @@ class SharwamaDetailsFragment : Fragment() {
     }
 
     private fun addOrderToCart(){
-        val order = Order("name", 1, "3", 300)
+        val order = Order(0,"name", 1, "3", 300)
         viewModel.addOrder(order)
         Toast.makeText(requireContext(), "Order Added To Cart", Toast.LENGTH_SHORT).show()
         findNavController().navigate(R.id.cartFragment)

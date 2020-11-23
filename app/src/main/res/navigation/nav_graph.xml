@@ -37,4 +37,9 @@
         android:name="com.example.shawarmahub.ui.fragments.ShawarmaMenuFragment"
         android:label="fragment_shawarma_menu"
         tools:layout="@layout/fragment_shawarma_menu" />
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.example.shawarmahub.CheckoutFragment"
+        android:label="fragment_checkout"
+        tools:layout="@layout/fragment_checkout" />
 </navigation>
