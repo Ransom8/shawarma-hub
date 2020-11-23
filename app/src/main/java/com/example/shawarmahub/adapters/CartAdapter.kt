@@ -1,5 +1,6 @@
-package com.example.shawarmahub.db.adapter
+package com.example.shawarmahub.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +27,8 @@ class CartAdapter(
                 itemName.text = order.name
                 itemPrice.text = order.price.toString()
                 itemImage.setImageResource(R.drawable.shawarma1)
+                itemQty.text = order.quantity
+
             }
 
         }

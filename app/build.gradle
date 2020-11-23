@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id "androidx.navigation.safeargs.kotlin"
 }
 
 android {
@@ -71,5 +72,5 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
 
     //opay
-    implementation 'team.opay.pay:paysdk:1.2.0'
+   // implementation 'team.opay.pay:paysdk:1.2.0'
 }

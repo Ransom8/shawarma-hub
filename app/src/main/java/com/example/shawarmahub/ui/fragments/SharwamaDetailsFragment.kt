@@ -15,6 +15,7 @@ import com.example.shawarmahub.R
 import com.example.shawarmahub.databinding.FragmentSharwamaDetailsBinding
 import com.example.shawarmahub.db.OrderDatabase
 import com.example.shawarmahub.db.model.Order
+import com.example.shawarmahub.db.model.Sharwama
 import com.example.shawarmahub.repository.Repository
 import com.example.shawarmahub.ui.viewModel.MainViewModel
 import com.example.shawarmahub.ui.viewModel.ViewModelFactory
@@ -38,6 +39,7 @@ class SharwamaDetailsFragment : Fragment() {
     lateinit var oneSausage: ImageView
     lateinit var twoSausages: ImageView
     lateinit var threeSausages: ImageView
+    lateinit var sharwama: Sharwama
 
     var initialPrice:Int = 0
 
@@ -73,15 +75,21 @@ class SharwamaDetailsFragment : Fragment() {
         threeSausages = binding.threeSausages
 
 
-        /***make this a const val from the main page***/
-        initialPrice = 200
-
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val bundle = SharwamaDetailsFragmentArgs.fromBundle(requireArguments())
+         sharwama = bundle.sharwama
+        binding.name.text = sharwama.name
+        binding.image.setImageResource(sharwama.image)
+        binding.price.text = sharwama.price
+        initialPrice = binding.price.text.toString().toInt()
+
+
 
         /**decrease quantity**/
         decreaseBtn.setOnClickListener {
@@ -134,6 +142,10 @@ class SharwamaDetailsFragment : Fragment() {
         binding.addToCart.setOnClickListener {
             addOrderToCart()
         }
+
+        binding.backBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
 
@@ -179,10 +191,15 @@ class SharwamaDetailsFragment : Fragment() {
     }
 
     private fun addOrderToCart(){
-        val order = Order(0,"name", 1, "3", 300)
+        val name = binding.name.text.toString()
+        val image = sharwama.image
+        val qty = binding.quantity.text.toString()
+        val price = binding.price.text.toString().toInt()
+       val order = Order(name,image, qty, price)
         viewModel.addOrder(order)
         Toast.makeText(requireContext(), "Order Added To Cart", Toast.LENGTH_SHORT).show()
-        findNavController().navigate(R.id.cartFragment)
+        val action = SharwamaDetailsFragmentDirections.actionSharwamaDetailsFragmentToCartFragment(order)
+        findNavController().navigate(action)
     }
 
     override fun onDestroy() {

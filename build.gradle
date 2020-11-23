@@ -8,6 +8,8 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        def nav_version = "2.3.0"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -18,13 +20,13 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven {
-            url 'http://arifactory.opayride.com/nexus/content/repositories/public/'
-            credentials {
-                username = 'FredOsuala'
-                password = 'Apismellifera1993'
-            }
-        }
+//        maven {
+//            url 'http://arifactory.opayride.com/nexus/content/repositories/public/'
+//            credentials {
+//                username = 'FredOsuala'
+//                password = 'Apismellifera1993'
+//            }
+//        }
 
     }
 }

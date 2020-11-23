@@ -37,7 +37,11 @@
         android:name="com.example.shawarmahub.ui.fragments.ShawarmaMenuFragment"
         android:label="fragment_shawarma_menu"
 
-        tools:layout="@layout/fragment_shawarma_menu" />
+        tools:layout="@layout/fragment_shawarma_menu" >
+        <action
+            android:id="@+id/action_shawarmaMenuFragment_to_sharwamaDetailsFragment"
+            app:destination="@id/sharwamaDetailsFragment" />
+    </fragment>
 <!--    <fragment-->
 <!--        android:id="@+id/checkoutFragment"-->
 <!--        android:name="com.example.shawarmahub.CheckoutFragment"-->

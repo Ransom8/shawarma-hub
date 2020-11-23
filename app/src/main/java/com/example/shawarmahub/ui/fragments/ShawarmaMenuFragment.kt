@@ -5,22 +5,36 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shawarmahub.R
 import com.example.shawarmahub.R.id.recyclerView
 import com.example.shawarmahub.adapters.Shawarma
 import com.example.shawarmahub.adapters.ShawarmaMenuAdapter
+import com.example.shawarmahub.databinding.FragmentSharwamaDetailsBinding
+import com.example.shawarmahub.databinding.FragmentShawarmaMenuBinding
+import com.example.shawarmahub.db.OrderDatabase
+import com.example.shawarmahub.db.model.Sharwama
+import com.example.shawarmahub.repository.Repository
+import com.example.shawarmahub.ui.viewModel.MainViewModel
+import com.example.shawarmahub.ui.viewModel.ViewModelFactory
 
 
-class ShawarmaMenuFragment : Fragment() {
+class ShawarmaMenuFragment : Fragment(), ShawarmaMenuAdapter.onItemClickListener {
+
+    private var _binding : FragmentShawarmaMenuBinding? = null
+    private val binding get() = _binding!!
+    lateinit var viewModel : MainViewModel
 
     lateinit var adapter: ShawarmaMenuAdapter
     private val recyclerList = mutableListOf(
-        Shawarma(R.drawable.shawarma1, R.string.Chicken_Shawarma, "N1200"),
-        Shawarma(R.drawable.shawarma2, R.string.Beef_Shawarma, "N1200"),
-        Shawarma(R.drawable.shawarma3, R.string.Fish_Shawarma, "N1200"),
-        Shawarma(R.drawable.shawarma4, R.string.Vegan_Shawarma, "N1800"),
-        Shawarma(R.drawable.shawarma1, R.string.Chicken_Beef_Combo, "N1800"),
+        Sharwama(1,  "Chicken Sharwama", R.drawable.shawarma1,"1200"),
+        Sharwama(2, "Beef Sharwama", R.drawable.shawarma2,"1200"),
+        Sharwama(3,  "Fish Sharwama",R.drawable.shawarma3, "1200"),
+        Sharwama(4,  "Vegan Sharwama",R.drawable.shawarma4, "1800"),
+        Sharwama(5,  "Chicken Beef Combo",R.drawable.shawarma1, "1800"),
     )
 
     override fun onCreateView(
@@ -29,16 +43,47 @@ class ShawarmaMenuFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.fragment_shawarma_menu, container, false)
+        _binding = FragmentShawarmaMenuBinding.inflate(inflater, container, false)
+
+        /** dao instance**/
+        val dao = OrderDatabase.invoke(requireContext()).getOrderDao()
+
+        /** repository instance**/
+        val repository = Repository(dao)
+
+        /** viewModel instance**/
+        val factory = ViewModelFactory(repository)
+
+        viewModel = ViewModelProvider(this, factory).get(MainViewModel::class.java)
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = ShawarmaMenuAdapter(recyclerList)
+        viewModel.allOrders().observe(viewLifecycleOwner, Observer {
+            binding.textView5.text = it.size.toString()
+        })
 
-//        recyclerView.adapter = ShawarmaMenuAdapter(recyclerList)
-//        recyclerView.layoutManager = LinearLayoutManager(this)
-//        recyclerView.setHasFixedSize(true)
+        adapter = ShawarmaMenuAdapter(recyclerList, this)
+
+        binding.recyclerView.adapter = ShawarmaMenuAdapter(recyclerList, this)
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.setHasFixedSize(true)
+
+        binding.imageView.setOnClickListener {
+            findNavController().navigate(R.id.cartFragment)
+        }
+    }
+
+    override fun itemClick(item: Sharwama, position: Int) {
+       val action = ShawarmaMenuFragmentDirections.actionShawarmaMenuFragmentToSharwamaDetailsFragment(item)
+        findNavController().navigate(action)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

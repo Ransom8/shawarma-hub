@@ -1,7 +1,6 @@
 package com.example.shawarmahub.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,19 +8,15 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.shawarmahub.R
 import com.example.shawarmahub.databinding.FragmentCartBinding
-import com.example.shawarmahub.databinding.FragmentSharwamaDetailsBinding
 import com.example.shawarmahub.db.OrderDatabase
-import com.example.shawarmahub.db.adapter.CartAdapter
+import com.example.shawarmahub.adapters.CartAdapter
 import com.example.shawarmahub.db.model.Order
 import com.example.shawarmahub.repository.Repository
 import com.example.shawarmahub.ui.viewModel.MainViewModel
 import com.example.shawarmahub.ui.viewModel.ViewModelFactory
-import com.google.android.material.snackbar.Snackbar
 
 
 class CartFragment : Fragment() {
@@ -31,7 +26,7 @@ class CartFragment : Fragment() {
 
     lateinit var viewModel : MainViewModel
     lateinit var adapter : CartAdapter
-     var orders = listOf<Order>()
+     var orders = mutableListOf<Order>()
 
 
     override fun onCreateView(
@@ -62,6 +57,10 @@ class CartFragment : Fragment() {
             findNavController().navigate(R.id.shawarmaMenuFragment)
         }
 
+        val bundle = CartFragmentArgs.fromBundle(requireArguments())
+        var data = bundle.order
+        orders.add(data)
+
         /***setup adapter**/
         adapter = CartAdapter(orders)
         binding.cartRv.adapter = adapter
@@ -76,34 +75,10 @@ class CartFragment : Fragment() {
             binding.totalPrice.text = it.toString()
         })
 
-//        val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
-//            ItemTouchHelper.UP or ItemTouchHelper.DOWN,
-//            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
-//        ) {
-//            override fun onMove(
-//                recyclerView: RecyclerView,
-//                viewHolder: RecyclerView.ViewHolder,
-//                target: RecyclerView.ViewHolder
-//            ): Boolean {
-//                return true
-//            }
-//
-//            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-//                val position = viewHolder.adapterPosition
-//                val order = adapter.order[position]
-//                viewModel.deleteOrder(order)
-//                Snackbar.make(view, "Successfully deleted order", Snackbar.LENGTH_LONG).apply {
-//                    setAction("Undo") {
-//                        viewModel.addOrder(order)
-//                    }
-//                    show()
-//                }
-//            }
-//        }
-//
-//        ItemTouchHelper(itemTouchHelperCallback).apply {
-//            attachToRecyclerView(binding.cartRv)
-//        }
+        binding.backBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
 
     }
 
