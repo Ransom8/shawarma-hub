@@ -35,6 +35,13 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+//    def secretApiKey = rootProject.file("apikey.properties")
+//    def secretKey = new Properties()
+//    secretKey.load(new FileInputStream(secretApiKey))
+//    defaultConfig{
+//        buildConfigField("String", "SECRET_KEY", secretKey["SECRET_KEY"])
+//    }
 }
 
 dependencies {

@@ -1,2 +1,3 @@
+include ':paysdk-debug'
 include ':app'
 rootProject.name = "Shawarma Hub"
