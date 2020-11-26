@@ -31,12 +31,10 @@
         <argument
             android:name="order"
             app:argType="com.example.shawarmahub.db.model.Order"
-<<<<<<< HEAD
+
             app:nullable="true"
             android:defaultValue="@null" />
-=======
-             />
->>>>>>> 04f12cde920bfeb36a712a4647b58a2e66cbf909
+
     </fragment>
     <fragment
         android:id="@+id/shawarmaMenuFragment"
@@ -48,18 +46,6 @@
             android:id="@+id/action_shawarmaMenuFragment_to_sharwamaDetailsFragment"
             app:destination="@id/sharwamaDetailsFragment" />
     </fragment>
-<!--    <fragment-->
-<!--        android:id="@+id/checkoutFragment"-->
-<!--        android:name="com.example.shawarmahub.CheckoutFragment"-->
-<!--        android:label="fragment_checkout"-->
-<!--        tools:layout="@layout/fragment_checkout" />-->
 
-<!--        <action-->
-<!--            android:id="@+id/action_shawarmaMenuFragment_to_sharwamaDetailsFragment"-->
-<!--            app:destination="@id/sharwamaDetailsFragment" />-->
-<!--        <action-->
-<!--            android:id="@+id/action_shawarmaMenuFragment_to_cartFragment"-->
-<!--            app:destination="@id/cartFragment" />-->
-<!--    </fragment>-->
 
 </navigation>
