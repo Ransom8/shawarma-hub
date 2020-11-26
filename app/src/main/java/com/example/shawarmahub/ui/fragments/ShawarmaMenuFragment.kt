@@ -70,7 +70,7 @@ class ShawarmaMenuFragment : Fragment(), ShawarmaMenuAdapter.onItemClickListener
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.totalQty().observe(viewLifecycleOwner, Observer {
-            binding.textView5.text = it.toString()
+            if(it != null) binding.textView5.text = it.toString()
         })
 
         adapter = ShawarmaMenuAdapter(recyclerList, this)

@@ -63,7 +63,7 @@ class CartAdapter(
                viewModel.deleteAll()
                it.findNavController().navigate(R.id.shawarmaMenuFragment)
            } else {
-               order.get(position)?.let { it1 -> viewModel.deleteOrder(it1) }
+               order[position]?.let { it1 -> viewModel.deleteOrder(it1) }
                this.notifyDataSetChanged()
                Toast.makeText(it.context, "Item deleted", Toast.LENGTH_SHORT).show()
            }
