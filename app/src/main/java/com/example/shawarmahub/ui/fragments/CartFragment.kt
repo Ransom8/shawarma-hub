@@ -87,8 +87,10 @@ class CartFragment : Fragment() {
 
             /***display total price**/
         viewModel.totalPrice().observe(viewLifecycleOwner, Observer {
-            binding.totalPrice.text = it.toString()
+            if (it != null) binding.totalPrice.text = it.toString()
         })
+
+        if (binding.totalPrice.text == "0") binding.checkout.visibility = View.GONE
 
 
 
