@@ -69,12 +69,6 @@ class ShawarmaMenuFragment : Fragment(), ShawarmaMenuAdapter.onItemClickListener
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val s = binding.textView2.toString().toSpannable()
-        s[11..38] = ForegroundColorSpan(resources.getColor(R.color.Big_text_color))
-
-//        val b = resources.getString(R.string.Each_bite__).toSpannable()
-//        b[11..38] = ForegroundColorSpan(resources.getColor(R.color.Big_text_color))
-
         viewModel.allOrders().observe(viewLifecycleOwner, Observer {
             binding.textView5.text = it.size.toString()
         })

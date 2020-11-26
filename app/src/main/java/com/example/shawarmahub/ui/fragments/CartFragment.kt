@@ -73,7 +73,7 @@ class CartFragment : Fragment() {
         }
 
         val bundle = CartFragmentArgs.fromBundle(requireArguments())
-        var data = bundle.order
+        val data = bundle.order
         orders.add(data)
 
         /***setup adapter**/
