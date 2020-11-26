@@ -31,8 +31,12 @@
         <argument
             android:name="order"
             app:argType="com.example.shawarmahub.db.model.Order"
+<<<<<<< HEAD
             app:nullable="true"
             android:defaultValue="@null" />
+=======
+             />
+>>>>>>> 04f12cde920bfeb36a712a4647b58a2e66cbf909
     </fragment>
     <fragment
         android:id="@+id/shawarmaMenuFragment"

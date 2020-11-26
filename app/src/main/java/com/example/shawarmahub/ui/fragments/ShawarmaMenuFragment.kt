@@ -1,10 +1,17 @@
 package com.example.shawarmahub.ui.fragments
 
+import android.graphics.Color
+import android.graphics.Typeface.BOLD
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.text.set
+import androidx.core.text.toSpannable
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController

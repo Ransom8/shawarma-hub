@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_marginTop="10dp"
     android:layout_height="wrap_content">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="76dp"
         android:layout_margin="2dp"
-        android:background="@drawable/rounded_edges">
+        android:background="@drawable/rounded_edges"
+        app:layout_constraintBottom_toBottomOf="@+id/shawarmaName"
+        app:layout_constraintTop_toBottomOf="@+id/shawarmaName">
 
         <ImageView
             android:id="@+id/shawarmaImage"
@@ -17,8 +20,9 @@
             android:layout_height="80dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="13dp"
-            android:layout_marginBottom="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/shawarma2" />
 
         <TextView
@@ -26,13 +30,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="34dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="16dp"
             android:layout_toEndOf="@+id/shawarmaImage"
             android:fontFamily="@font/cabin"
             android:text="@string/Chicken_Shawarma"
             android:textColor="@color/Small_text_color"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageView3"
@@ -41,11 +47,11 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="128dp"
-            android:layout_marginTop="26dp"
-            android:layout_marginEnd="29dp"
-            android:layout_marginBottom="26dp"
+            android:layout_marginEnd="16dp"
             android:layout_toEndOf="@+id/shawarmaName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24" />
 
         <TextView
@@ -53,11 +59,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/shawarmaName"
-            android:layout_marginStart="34dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="274dp"
             android:layout_toEndOf="@+id/shawarmaImage"
             android:fontFamily="@font/cabin"
             android:text="@string/shawarma_price"
-            android:textColor="@color/Counter_text_color" />
-    </RelativeLayout>
+            android:textColor="@color/Counter_text_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shawarmaName" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
