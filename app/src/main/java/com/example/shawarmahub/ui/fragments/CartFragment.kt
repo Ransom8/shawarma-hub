@@ -1,10 +1,12 @@
 package com.example.shawarmahub.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -17,8 +19,20 @@ import com.example.shawarmahub.db.model.Order
 import com.example.shawarmahub.repository.Repository
 import com.example.shawarmahub.ui.viewModel.MainViewModel
 import com.example.shawarmahub.ui.viewModel.ViewModelFactory
+import com.example.shawarmahub.utils.Constants.Companion.AES_KEY
+import com.example.shawarmahub.utils.Constants.Companion.ID
+import com.example.shawarmahub.utils.Constants.Companion.PUBLIC_KEY
+import com.example.shawarmahub.utils.randomStringGenerator.generateString
+import com.google.gson.Gson
+import com.opay.account.core.LoginTask
+import com.opay.account.core.PayTask
+import com.opay.account.iinterface.LoginResultCallback
+import com.opay.account.iinterface.PayResultCallback
+import com.opay.account.iinterface.ResultStatus
+import com.opay.account.model.LoginResult
+import com.opay.account.model.OrderInfo
 
-
+const val REQUEST_CODE = 200
 class CartFragment : Fragment() {
 
     private var _binding : FragmentCartBinding? = null
@@ -27,6 +41,7 @@ class CartFragment : Fragment() {
     lateinit var viewModel : MainViewModel
     lateinit var adapter : CartAdapter
      var orders = mutableListOf<Order>()
+    private var ref : String =""
 
 
     override fun onCreateView(
@@ -79,9 +94,56 @@ class CartFragment : Fragment() {
             findNavController().popBackStack()
         }
 
+        binding.checkout.setOnClickListener {
+             ref = generateString()
+           loginTask()
+        }
+
 
     }
 
+
+
+    fun loginTask() = LoginTask(PUBLIC_KEY, ID, AES_KEY).login(
+        context,
+        object : LoginResultCallback {
+            override fun onResult(status: LoginResult?) {
+                Log.i("TAG", "onResult: ${Gson().toJson(status)}")
+                if(REQUEST_CODE == status?.getStatus()?.code){
+
+                }
+            }
+
+        })
+
+    fun takeOrder(){
+        val amt = (binding.totalPrice.text.toString().toInt() * 100).toDouble()
+        val currency = "NGN"
+        val merchantName="FredOsuala"
+        val merchantUserId = ID
+        val reference = ref
+        val publicKey = PUBLIC_KEY
+        val description = "sharwama"
+
+        val order = OrderInfo()
+        order.amount = amt
+        order.currency = currency
+        order.description = description
+        order.merchantName = merchantName
+        order.merchantUserId = merchantUserId
+        order.publicKey = publicKey
+        order.reference = reference
+
+        fun makePayment() = PayTask(order).pay(context, object:PayResultCallback{
+            override fun onResult(status: ResultStatus?) {
+                Log.i("TAG", "onResult: ${Gson().toJson(status)}")
+                if(status?.code == REQUEST_CODE){
+
+                }
+            }
+
+        })
+    }
 
 
 

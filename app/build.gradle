@@ -35,6 +35,13 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+//    def secretApiKey = rootProject.file("apikey.properties")
+//    def secretKey = new Properties()
+//    secretKey.load(new FileInputStream(secretApiKey))
+//    defaultConfig{
+//        buildConfigField("String", "SECRET_KEY", secretKey["SECRET_KEY"])
+//    }
 }
 
 dependencies {
@@ -72,5 +79,5 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
 
     //opay
-   // implementation 'team.opay.pay:paysdk:1.2.0'
+    implementation 'team.opay.pay:paysdk:1.2.0'
 }

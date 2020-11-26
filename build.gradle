@@ -20,13 +20,13 @@ allprojects {
     repositories {
         google()
         jcenter()
-//        maven {
-//            url 'http://arifactory.opayride.com/nexus/content/repositories/public/'
-//            credentials {
-//                username = 'FredOsuala'
-//                password = 'Apismellifera1993'
-//            }
-//        }
+        maven {
+           url 'http://arifactory.opayride.com/nexus/content/repositories/public/'
+           credentials {
+              username = 'guest'
+               password = 'guest2019'
+           }
+      }
 
     }
 }
