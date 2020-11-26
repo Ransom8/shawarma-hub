@@ -1,18 +1,14 @@
 package com.example.shawarmahub.adapters
 
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shawarmahub.R
 import com.example.shawarmahub.databinding.CartItemBinding
-import com.example.shawarmahub.db.OrderDatabase
 import com.example.shawarmahub.db.model.Order
-import com.example.shawarmahub.repository.Repository
 import com.example.shawarmahub.ui.viewModel.MainViewModel
-import com.example.shawarmahub.ui.viewModel.ViewModelFactory
 
 class CartAdapter(
     var order: MutableList<Order?>, val viewModel: MainViewModel
@@ -63,9 +59,14 @@ class CartAdapter(
 
        holder.delete.setOnClickListener {
            order.removeAt(position)
-           viewModel.deleteOrder(order.get(position-1)!!)
-           this.notifyDataSetChanged()
-           Toast.makeText(it.context, "Item deleted", Toast.LENGTH_SHORT).show()
+           if (order.isEmpty()) {
+               viewModel.deleteAll()
+               it.findNavController().navigate(R.id.shawarmaMenuFragment)
+           } else {
+               order.get(position)?.let { it1 -> viewModel.deleteOrder(it1) }
+               this.notifyDataSetChanged()
+               Toast.makeText(it.context, "Item deleted", Toast.LENGTH_SHORT).show()
+           }
        }
 
     }
