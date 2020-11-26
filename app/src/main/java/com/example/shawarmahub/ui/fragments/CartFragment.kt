@@ -77,7 +77,7 @@ class CartFragment : Fragment() {
         orders.add(data)
 
         /***setup adapter**/
-        adapter = CartAdapter(orders)
+        adapter = CartAdapter(orders, viewModel)
         binding.cartRv.adapter = adapter
 
         viewModel.allOrders().observe(viewLifecycleOwner, Observer {
@@ -89,6 +89,8 @@ class CartFragment : Fragment() {
         viewModel.totalPrice().observe(viewLifecycleOwner, Observer {
             binding.totalPrice.text = it.toString()
         })
+
+
 
         binding.backBtn.setOnClickListener {
             findNavController().popBackStack()
@@ -111,6 +113,10 @@ class CartFragment : Fragment() {
             override fun onResult(status: LoginResult?) {
                 Log.i("TAG", "onResult: ${Gson().toJson(status)}")
                 //if(REQUEST_CODE == status?.getStatus()?.code){
+                /***
+                 * status returned "SERVER ERROR"
+                 * sent a mail but got no reply
+                 * **/
                     takeOrder()
                 //}
             }
