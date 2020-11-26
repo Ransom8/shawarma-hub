@@ -1,10 +1,17 @@
 package com.example.shawarmahub.ui.fragments
 
+import android.graphics.Color
+import android.graphics.Typeface.BOLD
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.text.set
+import androidx.core.text.toSpannable
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -61,6 +68,12 @@ class ShawarmaMenuFragment : Fragment(), ShawarmaMenuAdapter.onItemClickListener
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val s = binding.textView2.toString().toSpannable()
+        s[11..38] = ForegroundColorSpan(resources.getColor(R.color.Big_text_color))
+
+//        val b = resources.getString(R.string.Each_bite__).toSpannable()
+//        b[11..38] = ForegroundColorSpan(resources.getColor(R.color.Big_text_color))
 
         viewModel.allOrders().observe(viewLifecycleOwner, Observer {
             binding.textView5.text = it.size.toString()
