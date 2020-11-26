@@ -62,8 +62,8 @@ class ShawarmaMenuFragment : Fragment(), ShawarmaMenuAdapter.onItemClickListener
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.allOrders().observe(viewLifecycleOwner, Observer {
-            binding.textView5.text = it.size.toString()
+        viewModel.totalQty().observe(viewLifecycleOwner, Observer {
+            binding.textView5.text = it.toString()
         })
 
         adapter = ShawarmaMenuAdapter(recyclerList, this)

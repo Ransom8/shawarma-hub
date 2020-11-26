@@ -18,6 +18,8 @@ class MainViewModel(private val repository: Repository) : ViewModel(){
 
     fun totalPrice() = repository.totalPrice()
 
+    fun totalQty() = repository.totalQty()
+
     fun deleteOrder(order: Order)=viewModelScope.launch {
         repository.deleteOrder(order)
     }

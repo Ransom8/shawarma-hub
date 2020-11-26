@@ -15,4 +15,6 @@ class Repository(private val dao: OrderDao) {
     fun deleteAllOrder() = dao.deleteAllOrder()
 
     fun totalPrice() = dao.totalOrder()
+
+    fun totalQty() = dao.totalQty()
 }

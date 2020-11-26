@@ -9,13 +9,13 @@ import com.example.shawarmahub.databinding.CartItemBinding
 import com.example.shawarmahub.db.model.Order
 
 class CartAdapter(
-    var order: List<Order>
+    var order: List<Order?>
 
 ) : RecyclerView.Adapter<CartAdapter.MyViewHolder>() {
 
 
-    fun setOrders(data: List<Order>){
-        this.order =data as ArrayList<Order>
+    fun setOrders(data: List<Order?>){
+        this.order =data as ArrayList<Order?>
         notifyDataSetChanged()
     }
     inner class MyViewHolder(private val binding: CartItemBinding) :
@@ -46,7 +46,9 @@ class CartAdapter(
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val curOrder = order[position]
-        holder.bind(curOrder)
+        if (curOrder != null) {
+            holder.bind(curOrder)
+        }
 
     }
 

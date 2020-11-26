@@ -40,7 +40,7 @@ class CartFragment : Fragment() {
 
     lateinit var viewModel : MainViewModel
     lateinit var adapter : CartAdapter
-     var orders = mutableListOf<Order>()
+     var orders = mutableListOf<Order?>()
     private var ref : String =""
 
 
@@ -73,7 +73,7 @@ class CartFragment : Fragment() {
         }
 
         val bundle = CartFragmentArgs.fromBundle(requireArguments())
-        var data = bundle.order
+        val data = bundle.order
         orders.add(data)
 
         /***setup adapter**/
@@ -94,6 +94,7 @@ class CartFragment : Fragment() {
             findNavController().popBackStack()
         }
 
+        /***checkout and make payment**/
         binding.checkout.setOnClickListener {
              ref = generateString()
            loginTask()
@@ -109,15 +110,15 @@ class CartFragment : Fragment() {
         object : LoginResultCallback {
             override fun onResult(status: LoginResult?) {
                 Log.i("TAG", "onResult: ${Gson().toJson(status)}")
-                if(REQUEST_CODE == status?.getStatus()?.code){
-
-                }
+                //if(REQUEST_CODE == status?.getStatus()?.code){
+                    takeOrder()
+                //}
             }
 
         })
 
     fun takeOrder(){
-        val amt = (binding.totalPrice.text.toString().toInt() * 100).toDouble()
+        val amt = (binding.totalPrice.text.toString().toInt()).toDouble()
         val currency = "NGN"
         val merchantName="FredOsuala"
         val merchantUserId = ID
@@ -134,11 +135,11 @@ class CartFragment : Fragment() {
         order.publicKey = publicKey
         order.reference = reference
 
-        fun makePayment() = PayTask(order).pay(context, object:PayResultCallback{
+        PayTask(order).pay(context, object : PayResultCallback {
             override fun onResult(status: ResultStatus?) {
                 Log.i("TAG", "onResult: ${Gson().toJson(status)}")
-                if(status?.code == REQUEST_CODE){
-
+                if (status?.code == REQUEST_CODE) {
+                    Toast.makeText(requireContext(), "Successful", Toast.LENGTH_SHORT).show()
                 }
             }
 

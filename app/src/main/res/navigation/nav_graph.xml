@@ -30,7 +30,9 @@
             app:destination="@id/shawarmaMenuFragment" />
         <argument
             android:name="order"
-            app:argType="com.example.shawarmahub.db.model.Order" />
+            app:argType="com.example.shawarmahub.db.model.Order"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/shawarmaMenuFragment"

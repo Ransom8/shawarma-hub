@@ -26,5 +26,8 @@ interface OrderDao {
     @Query("SELECT SUM(price) FROM `order`")
     fun totalOrder(): LiveData<Int>
 
+    @Query("SELECT SUM(quantity) FROM `order`")
+    fun totalQty(): LiveData<Int>
+
 
 }
