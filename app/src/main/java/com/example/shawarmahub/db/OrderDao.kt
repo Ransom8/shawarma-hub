@@ -18,7 +18,7 @@ interface OrderDao {
     fun getOrder():LiveData<List<Order>>
 
     @Query("SELECT * FROM `order`")
-    fun deleteAllOrder(): LiveData<Order>
+    fun deleteAllOrder(): LiveData<List<Order>>
 
     @Query("SELECT SUM(price) FROM `order`")
     fun totalOrder(): LiveData<Int>

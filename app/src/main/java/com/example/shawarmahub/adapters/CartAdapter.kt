@@ -59,7 +59,7 @@ class CartAdapter(
 
        holder.delete.setOnClickListener {
            order.removeAt(position)
-           if (order.isEmpty()) {
+           if (order.size < 2) {
                viewModel.deleteAll()
                it.findNavController().navigate(R.id.shawarmaMenuFragment)
            } else {
