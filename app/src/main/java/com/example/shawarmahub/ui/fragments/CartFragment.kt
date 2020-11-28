@@ -2,19 +2,19 @@ package com.example.shawarmahub.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shawarmahub.R
+import com.example.shawarmahub.adapters.CartAdapter
 import com.example.shawarmahub.databinding.FragmentCartBinding
 import com.example.shawarmahub.db.OrderDatabase
-import com.example.shawarmahub.adapters.CartAdapter
 import com.example.shawarmahub.db.model.Order
 import com.example.shawarmahub.repository.Repository
 import com.example.shawarmahub.ui.viewModel.MainViewModel
@@ -33,15 +33,16 @@ import com.opay.account.model.LoginResult
 import com.opay.account.model.OrderInfo
 
 const val REQUEST_CODE = 200
+
 class CartFragment : Fragment() {
 
-    private var _binding : FragmentCartBinding? = null
+    private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
 
-    lateinit var viewModel : MainViewModel
-    lateinit var adapter : CartAdapter
-     var orders = mutableListOf<Order?>()
-    private var ref : String =""
+    lateinit var viewModel: MainViewModel
+    lateinit var adapter: CartAdapter
+    var orders = mutableListOf<Order?>()
+    private var ref: String = ""
 
 
     override fun onCreateView(
@@ -85,9 +86,9 @@ class CartFragment : Fragment() {
         })
         binding.cartRv.layoutManager = LinearLayoutManager(requireContext())
 
-            /***display total price**/
+        /***display total price**/
         viewModel.totalPrice().observe(viewLifecycleOwner, Observer {
-            binding.totalPrice.text = it.toString()
+            if (it != null) binding.totalPrice.text = it.toString()
         })
 
 
@@ -98,13 +99,12 @@ class CartFragment : Fragment() {
 
         /***checkout and make payment**/
         binding.checkout.setOnClickListener {
-             ref = generateString()
-           loginTask()
+            ref = generateString()
+            loginTask()
         }
 
 
     }
-
 
 
     fun loginTask() = LoginTask(PUBLIC_KEY, ID, AES_KEY).login(
@@ -117,16 +117,16 @@ class CartFragment : Fragment() {
                  * status returned "SERVER ERROR"
                  * sent a mail but got no reply
                  * **/
-                    takeOrder()
+                takeOrder()
                 //}
             }
 
         })
 
-    fun takeOrder(){
+    fun takeOrder() {
         val amt = (binding.totalPrice.text.toString().toInt()).toDouble()
         val currency = "NGN"
-        val merchantName="FredOsuala"
+        val merchantName = "FredOsuala"
         val merchantUserId = ID
         val reference = ref
         val publicKey = PUBLIC_KEY
@@ -151,7 +151,6 @@ class CartFragment : Fragment() {
 
         })
     }
-
 
 
     override fun onDestroy() {

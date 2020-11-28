@@ -12,7 +12,7 @@ class Repository(private val dao: OrderDao) {
 
     fun  getAllOrder() = dao.getOrder()
 
-    fun deleteAllOrder() = dao.deleteAllOrder()
+    suspend fun deleteAllOrder() = dao.deleteAllOrder()
 
     fun totalPrice() = dao.totalOrder()
 

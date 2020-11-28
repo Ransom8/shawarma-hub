@@ -24,7 +24,9 @@ class MainViewModel(private val repository: Repository) : ViewModel(){
         repository.deleteOrder(order)
     }
 
-    fun deleteAll() = repository.deleteAllOrder()
+    fun deleteAll() =viewModelScope.launch {
+        repository.deleteAllOrder()
+    }
 
 
 }
