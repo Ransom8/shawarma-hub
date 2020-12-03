@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_sharwama_details" >
         <action
             android:id="@+id/action_sharwamaDetailsFragment_to_shawarmaMenuFragment"
-            app:destination="@id/shawarmaMenuFragment" />
+            app:destination="@id/shawarmaMenuFragment"
+            app:popUpTo="@id/shawarmaMenuFragment"
+            app:popUpToInclusive="true"/>
         <argument
             android:name="sharwama"
             app:argType="com.example.shawarmahub.db.model.Sharwama" />
@@ -27,7 +29,9 @@
         tools:layout="@layout/fragment_cart" >
         <action
             android:id="@+id/action_cartFragment_to_shawarmaMenuFragment"
-            app:destination="@id/shawarmaMenuFragment" />
+            app:destination="@id/shawarmaMenuFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/shawarmaMenuFragment"/>
         <argument
             android:name="order"
             app:argType="com.example.shawarmahub.db.model.Order"
